@@ -1,15 +1,43 @@
 // Враг.
 
 class Enemy {
-  constructor() {
-    this.generateSkin();
-    this.position = 2;
+  constructor(
+    skins = [
+      '👾',
+      '💀',
+      '👹',
+      '👻',
+      '👽',
+      '👿',
+      '💩',
+      '🤡',
+      '🤺',
+      '🧛',
+      '🧟',
+      '🎃',
+    ],
+  ) {
+    this.skin = skins[Math.floor(Math.random() * skins.length)];
+    this.position = 3;
   }
 
-  generateSkin() {
-    const skins = ['👾', '💀', '👹', '👻', '👽', '👿', '💩', '🤡', '🤺', '🧛', '🧟', '🎃'];
-    this.skin = skins[Math.floor(Math.random() * skins.length)];
-  }
+  // generateSkin() {
+  //   const skins = [
+  //     '👾',
+  //     '💀',
+  //     '👹',
+  //     '👻',
+  //     '👽',
+  //     '👿',
+  //     '💩',
+  //     '🤡',
+  //     '🤺',
+  //     '🧛',
+  //     '🧟',
+  //     '🎃',
+  //   ];
+  //   this.skin = skins[Math.floor(Math.random() * skins.length)];
+  // }
 
   moveLeft() {
     // Идём влево.
