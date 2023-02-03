@@ -3,12 +3,16 @@
 class View {
   render(track) {
     const yourTeamName = 'Elbrus';
-    console.log;
-    // Тут всё рисуем.
     console.clear();
+    console.log(
+      '🌳🌴🌲🌳🌴🌲🌳🌴🌲🌳🌴🌲🌳🌴🌲🌳🌴🌲🌳🌴🌲🌳🌴🌲🌳🌴🌲🌳🌴🌲🌳🌴🌲'
+    );
+    console.log('\n');
     console.log(track.join(''));
-    console.log('\n\n');
-    console.log('\n\n');
+    console.log('\n');
+    console.log(
+      '🌳🌴🌲🌳🌴🌲🌳🌴🌲🌳🌴🌲🌳🌴🌲🌳🌴🌲🌳🌴🌲🌳🌴🌲🌳🌴🌲🌳🌴🌲🌳🌴🌲'
+    );
     console.log(`Created by "${yourTeamName}" with love`);
   }
 }
