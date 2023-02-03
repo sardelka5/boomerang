@@ -7,11 +7,11 @@ const game = new Game({
 });
 
 // Запуск игры.
-game.play();
+console.clear();
+const nameOfUser = process.argv[2];
 
-// const nameOfUser = process.argv[2];
-
-// async function main(name) {
-//   const user = await User.create({ name: `${name}` });
-// }
-// main(nameOfUser);
+async function main(name) {
+  game.play();
+  const user = await User.create({ name: `${name}` });
+}
+main(nameOfUser);

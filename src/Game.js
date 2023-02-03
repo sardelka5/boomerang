@@ -32,35 +32,32 @@ class Game {
     if (this.hero.position === this.enemy.position) {
       console.log('Минус одна жизнь -💔');
       this.hero.die();
-      // this.hero.notDie();
-      // this.enemy = new Enemy();
-      // if (end === 3) {
-      //   this.hero.die();
-      // }
     }
   }
 
-  play() {
-    runInteractiveConsole(this.hero, this.boomerang);
+  async play() {
+    runInteractiveConsole(this.hero, this.boomerang, this.enemy);
     let count = 0;
-    const int = setInterval(() => {
+    const int = await setInterval(() => {
       this.check();
       this.regenerateTrack();
       this.view.render(this.track);
-      // this.boomerang.moveRight();
       if (this.boomerang.position === this.enemy.position) {
-        // this.boomerang.position = 1;
-        // this.boomerang = new Boomerang(); // created by me
         this.enemy.die();
+        this.countOfEnemies += 1;
         this.enemy = new Enemy();
-        this.boomerang.moveLeft();
+        this.boomerang.position = '?';
+        this.boomerang = new Boomerang();
+        runInteractiveConsole(this.hero, this.boomerang, this.enemy);
       }
       this.enemy.moveLeft();
       count += 1;
-      if (count === 50) {
+      if (count === 100) {
         clearInterval(int);
+        console.log('Время вышло!');
+        process.exit();
       }
-    }, 1000);
+    }, 500);
   }
 }
 

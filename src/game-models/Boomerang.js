@@ -5,7 +5,7 @@
 class Boomerang {
   constructor() {
     this.skin = '🌀';
-    this.position = 1;
+    this.position = -1;
   }
 
   fly() {
@@ -20,7 +20,9 @@ class Boomerang {
 
   moveRight() {
     // Идём вправо.
+    // setInterval(() => {
     this.position += 1;
+    // }, 500);
   }
 }
 

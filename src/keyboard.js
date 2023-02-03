@@ -1,5 +1,4 @@
 const keypress = require('keypress');
-const Boomerang = require('./game-models/Boomerang');
 
 module.exports = function runInteractiveConsole(hero, boomerang) {
   keypress(process.stdin);
@@ -13,7 +12,11 @@ module.exports = function runInteractiveConsole(hero, boomerang) {
         hero.position -= 1;
       }
       if (key.name === 'q') {
-        boomerang.position += 1;
+        boomerang.moveRight();
+      }
+      if (key.name === 'w') {
+        boomerang.position = hero.position + 1;
+        boomerang.moveRight();
       }
       if (key.ctrl && key.name === 'c') {
         process.exit();
