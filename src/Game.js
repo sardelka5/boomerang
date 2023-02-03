@@ -17,6 +17,7 @@ class Game {
     this.boomerang = new Boomerang(); // created by me
     this.view = new View();
     this.track = [];
+    this.countOfEnemies = 0;
     this.regenerateTrack();
   }
 
@@ -60,7 +61,11 @@ class Game {
       this.check();
       this.regenerateTrack();
       this.view.render(this.track);
-      if (this.boomerang.position === this.enemy.position) {
+      if (
+        this.boomerang.position === this.enemy.position ||
+        this.boomerang.position === this.enemy.position - 1 ||
+        this.boomerang.position - 1 === this.enemy.position
+      ) {
         this.enemy.die();
         this.countOfEnemies += 1;
         this.enemy = new Enemy();

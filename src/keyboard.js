@@ -12,7 +12,9 @@ module.exports = function runInteractiveConsole(hero, boomerang) {
         hero.position -= 1;
       }
       if (key.name === 'q') {
-        boomerang.moveRight();
+        setInterval(() => {
+          boomerang.moveRight();
+        }, 100);
       }
       if (key.name === 'w') {
         boomerang.position = hero.position + 1;
