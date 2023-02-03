@@ -5,9 +5,10 @@ const player = require('play-sound')(opts = {})
 
 
 class Hero {
-  constructor(position) {
-    this.skin = "🤠"; // можете использовать любые emoji '💃'
-    this.position = position;
+  constructor(boomerang) {
+    this.skin = '🤠'; // можете использовать любые emoji '💃'
+    this.position = 0;
+    this.boomerang = boomerang;
   }
 
   moveLeft() {
@@ -33,15 +34,13 @@ class Hero {
   }
 
   die() {
-    const newSkin = "💀";
-    this.skin = newSkin;
-    // player.play('../sounds/twirl.wav', function(err){
+    this.skin = '💀';
+    console.log('YOU ARE DEAD!💀');
+        // player.play('../sounds/twirl.wav', function(err){
     //   if (err) throw err;
     // })
     // sound.play();
-    console.log("YOU ARE DEAD!💀");
-    // audio.kill();
-    // process.exit();
+    process.exit();
   }
 }
 
