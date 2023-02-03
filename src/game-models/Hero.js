@@ -1,4 +1,8 @@
+const Enemy = require('./Enemy');
+const player = require('play-sound')(opts = {})
+
 // Наш герой.
+
 
 class Hero {
   constructor(position) {
@@ -21,11 +25,23 @@ class Hero {
     this.boomerang.fly();
   }
 
+  notDie() {
+    const newSkin = " "
+    this.skin = newSkin;
+    this.skin = "🤠";
+    console.log("ТЫ ЕЩЕ НЕ УМЕР! -💔");
+  }
+
   die() {
-    this.skin = "💀";
-    // console.clear();
+    const newSkin = "💀";
+    this.skin = newSkin;
+    // player.play('../sounds/twirl.wav', function(err){
+    //   if (err) throw err;
+    // })
+    // sound.play();
     console.log("YOU ARE DEAD!💀");
-    process.exit();
+    // audio.kill();
+    // process.exit();
   }
 }
 
