@@ -1,5 +1,3 @@
-// Основной файл.
-// Запускает игру.
 const Game = require('./src/Game');
 const { User } = require('./db/models');
 
@@ -9,11 +7,11 @@ const game = new Game({
 });
 
 // Запуск игры.
-game.play();
-
+console.clear();
 const nameOfUser = process.argv[2];
 
 async function main(name) {
+  game.play();
   const user = await User.create({ name: `${name}` });
 }
 main(nameOfUser);

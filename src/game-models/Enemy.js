@@ -1,9 +1,7 @@
-// Враг.
-
 class Enemy {
   constructor(
     skins = [
-      '👾',
+      '🦫',
       '💀',
       '👹',
       '👻',
@@ -15,32 +13,13 @@ class Enemy {
       '🧛',
       '🧟',
       '🎃',
-    ],
+    ]
   ) {
     this.skin = skins[Math.floor(Math.random() * skins.length)];
-    this.position = 10;
+    this.position = 29;
   }
 
-  // generateSkin() {
-  //   const skins = [
-  //     '👾',
-  //     '💀',
-  //     '👹',
-  //     '👻',
-  //     '👽',
-  //     '👿',
-  //     '💩',
-  //     '🤡',
-  //     '🤺',
-  //     '🧛',
-  //     '🧟',
-  //     '🎃',
-  //   ];
-  //   this.skin = skins[Math.floor(Math.random() * skins.length)];
-  // }
-
   moveLeft() {
-    // Идём влево.
     this.position -= 1;
   }
 
