@@ -3,7 +3,7 @@
 class View {
   render(track) {
     const yourTeamName = 'Elbrus';
-
+    console.log;
     // Тут всё рисуем.
     console.clear();
     console.log(track.join(''));

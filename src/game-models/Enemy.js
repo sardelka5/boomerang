@@ -18,7 +18,7 @@ class Enemy {
     ],
   ) {
     this.skin = skins[Math.floor(Math.random() * skins.length)];
-    this.position = 3;
+    this.position = 10;
   }
 
   // generateSkin() {
