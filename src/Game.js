@@ -2,6 +2,7 @@
 // Или можно не импортировать,
 // а передавать все нужные объекты прямо из run.js при инициализации new Game().
 
+const player = require('play-sound')({});
 const Hero = require('./game-models/Hero');
 const Enemy = require('./game-models/Enemy');
 const View = require('./View');
@@ -30,14 +31,31 @@ class Game {
 
   check() {
     if (this.hero.position === this.enemy.position) {
-      console.log('Минус одна жизнь -💔');
+      this.audioGame.kill();
+      this.musicPlayDied();
       this.hero.die();
     }
+  }
+
+  musicPlayGame() {
+    this.audioGame = player.play(
+      `${__dirname}/sounds/game.mp3`,
+      function (err) {
+        if (err && !err.killed) throw err;
+      }
+    );
+  }
+
+  musicPlayDied() {
+    player.play(`${__dirname}/sounds/died.mp3`, function (err) {
+      if (err) throw err;
+    });
   }
 
   async play() {
     runInteractiveConsole(this.hero, this.boomerang, this.enemy);
     let count = 0;
+    this.musicPlayGame();
     const int = await setInterval(() => {
       this.check();
       this.regenerateTrack();
