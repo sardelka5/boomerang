@@ -4,12 +4,9 @@
 
 const Hero = require('./game-models/Hero');
 const Enemy = require('./game-models/Enemy');
-// const Boomerang = require('./game-models/Boomerang');
 const View = require('./View');
 const Boomerang = require('./game-models/Boomerang');
-
-// Основной класс игры.
-// Тут будут все настройки, проверки, запуск.
+const runInteractiveConsole = require('./keyboard');
 
 class Game {
   constructor({ trackLength }) {
@@ -33,7 +30,7 @@ class Game {
 
   check() {
     if (this.hero.position === this.enemy.position) {
-      console.log('fsfsrdfd');
+      console.log('Минус одна жизнь -💔');
       this.hero.die();
       // this.hero.notDie();
       // this.enemy = new Enemy();
@@ -44,23 +41,23 @@ class Game {
   }
 
   play() {
+    runInteractiveConsole(this.hero, this.boomerang);
     let count = 0;
     const int = setInterval(() => {
-      // Let's play!
       this.check();
       this.regenerateTrack();
       this.view.render(this.track);
-      this.boomerang.moveRight(); // created by me
+      // this.boomerang.moveRight();
       if (this.boomerang.position === this.enemy.position) {
-        this.boomerang.position = 1;
+        // this.boomerang.position = 1;
+        // this.boomerang = new Boomerang(); // created by me
         this.enemy.die();
         this.enemy = new Enemy();
-
-        // this.enemy.position = 10;
-      } // created by me;
+        this.boomerang.moveLeft();
+      }
       this.enemy.moveLeft();
       count += 1;
-      if (count === 20) { /// 10
+      if (count === 50) {
         clearInterval(int);
       }
     }, 1000);
