@@ -13,7 +13,7 @@ const View = require('./View');
 class Game {
   constructor({ trackLength }) {
     this.trackLength = trackLength;
-    this.hero = new Hero(); // Герою можно аргументом передать бумеранг.
+    this.hero = new Hero(1); // Герою можно аргументом передать бумеранг.
     this.enemy = new Enemy();
     this.view = new View();
     this.track = [];
@@ -25,6 +25,7 @@ class Game {
     // в единую структуру данных
     this.track = new Array(this.trackLength).fill(' ');
     this.track[this.hero.position] = this.hero.skin;
+    this.track[this.enemy.position] = this.enemy.skin;
   }
 
   check() {
@@ -34,12 +35,18 @@ class Game {
   }
 
   play() {
-    setInterval(() => {
+    let count = 0;
+    const int = setInterval(() => {
       // Let's play!
       this.check();
       this.regenerateTrack();
       this.view.render(this.track);
-    });
+      this.enemy.moveLeft();
+      count += 1;
+      if (count === 10) {
+        clearInterval(int);
+      }
+    }, 1000);
   }
 }
 
