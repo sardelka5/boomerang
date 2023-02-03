@@ -31,6 +31,8 @@ class Game {
   check() {
     if (this.hero.position === this.enemy.position) {
       this.hero.die();
+      this.enemy.die();
+      this.enemy = new Enemy();
     }
   }
 

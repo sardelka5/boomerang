@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       name: {
         allowNull: false,
         type: DataTypes.TEXT,
+        unique: true,
       },
       winsCounter: {
         type: DataTypes.INTEGER,
@@ -25,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: 'User',
-    },
+    }
   );
   return User;
 };
