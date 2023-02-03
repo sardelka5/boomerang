@@ -33,7 +33,13 @@ class Game {
 
   check() {
     if (this.hero.position === this.enemy.position) {
+      console.log('fsfsrdfd');
       this.hero.die();
+      // this.hero.notDie();
+      // this.enemy = new Enemy();
+      // if (end === 3) {
+      //   this.hero.die();
+      // }
     }
   }
 
