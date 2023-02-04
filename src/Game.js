@@ -1,7 +1,9 @@
-// Импортируем всё необходимое.
-// Или можно не импортировать,
-// а передавать все нужные объекты прямо из run.js при инициализации new Game().
-
+/* eslint-disable operator-linebreak */
+/* eslint-disable no-console */
+/* eslint-disable func-names */
+/* eslint-disable class-methods-use-this */
+/* eslint-disable prefer-arrow-callback */
+/* eslint-disable comma-dangle */
 const player = require('play-sound')({});
 const Hero = require('./game-models/Hero');
 const Enemy = require('./game-models/Enemy');
@@ -12,29 +14,26 @@ const runInteractiveConsole = require('./keyboard');
 class Game {
   constructor({ trackLength }) {
     this.trackLength = trackLength;
-    this.hero = new Hero(); // Герою можно аргументом передать бумеранг.
+    this.hero = new Hero();
     this.enemy = new Enemy();
-    this.boomerang = new Boomerang(); // created by me
+    this.boomerang = new Boomerang();
     this.view = new View();
     this.track = [];
-    this.countOfEnemies = 0;
     this.regenerateTrack();
   }
 
   regenerateTrack() {
-    // Сборка всего необходимого (герой, враг(и), оружие)
-    // в единую структуру данных
     this.track = new Array(this.trackLength).fill(' ');
     this.track[this.hero.position] = this.hero.skin;
-    this.track[this.boomerang.position] = this.boomerang.skin; // created by me
+    this.track[this.boomerang.position] = this.boomerang.skin;
     this.track[this.enemy.position] = this.enemy.skin;
   }
 
-  check() {
+  check(countOfEnemies) {
     if (this.hero.position === this.enemy.position) {
       this.audioGame.kill();
       this.musicPlayDied();
-      this.hero.die();
+      this.hero.die(countOfEnemies);
     }
   }
 
@@ -54,11 +53,12 @@ class Game {
   }
 
   async play() {
-    runInteractiveConsole(this.hero, this.boomerang, this.enemy);
+    runInteractiveConsole(this.hero, this.boomerang);
     let count = 0;
+    let countOfEnemies = 0;
     this.musicPlayGame();
     const int = await setInterval(() => {
-      this.check();
+      this.check(countOfEnemies);
       this.regenerateTrack();
       this.view.render(this.track);
       if (
@@ -66,21 +66,24 @@ class Game {
         this.boomerang.position === this.enemy.position - 1 ||
         this.boomerang.position - 1 === this.enemy.position
       ) {
+        countOfEnemies += 1;
+        console.log(`Убито врагов: ${countOfEnemies}`);
         this.enemy.die();
-        this.countOfEnemies += 1;
         this.enemy = new Enemy();
         this.boomerang.position = '?';
         this.boomerang = new Boomerang();
-        runInteractiveConsole(this.hero, this.boomerang, this.enemy);
+        runInteractiveConsole(this.hero, this.boomerang);
       }
       this.enemy.moveLeft();
       count += 1;
-      if (count === 100) {
+      if (count === 200) {
         clearInterval(int);
         console.log('Время вышло!');
+        console.log(`Убито врагов: ${countOfEnemies}`);
         process.exit();
       }
-    }, 500);
+    }, 200);
+    return countOfEnemies;
   }
 }
 
