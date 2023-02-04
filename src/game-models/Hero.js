@@ -1,6 +1,4 @@
-const Enemy = require('./Enemy');
-// const player = require('play-sound')((opts = {}));
-
+/* eslint-disable class-methods-use-this */
 class Hero {
   constructor() {
     this.skin = '🐝';
@@ -19,8 +17,9 @@ class Hero {
     this.boomerang.fly();
   }
 
-  die() {
-    console.log('YOU ARE DEAD!💀');
+  die(countOfEnemies) {
+    console.log('Ты проиграл! 😵');
+    console.log(`Убито врагов: ${countOfEnemies}`);
     process.exit();
   }
 }

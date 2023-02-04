@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 const keypress = require('keypress');
 
 module.exports = function runInteractiveConsole(hero, boomerang) {
@@ -12,11 +13,8 @@ module.exports = function runInteractiveConsole(hero, boomerang) {
         hero.position -= 1;
       }
       if (key.name === 'q') {
-        boomerang.moveRight();
-      }
-      if (key.name === 'w') {
         boomerang.position = hero.position + 1;
-        boomerang.moveRight();
+        setInterval(() => boomerang.fly(hero), 15);
       }
       if (key.ctrl && key.name === 'c') {
         process.exit();

@@ -1,9 +1,10 @@
+/* eslint-disable no-console */
 const Game = require('./src/Game');
 const { User } = require('./db/models');
 
 // Инициализация игры с настройками.
 const game = new Game({
-  trackLength: 30,
+  trackLength: 40,
 });
 
 // Запуск игры.
@@ -12,6 +13,6 @@ const nameOfUser = process.argv[2];
 
 async function main(name) {
   game.play();
-  const user = await User.create({ name: `${name}` });
+  await User.create({ name: `${name}` });
 }
 main(nameOfUser);
