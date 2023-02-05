@@ -9,6 +9,12 @@ class Boomerang {
       this.moveRight();
     } else {
       this.moveLeft();
+      this.moveLeft();
+      this.moveLeft();
+      this.moveLeft();
+    }
+    if (this.position === hero.position) {
+      this.position = '?';
     }
   }
 
