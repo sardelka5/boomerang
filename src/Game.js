@@ -78,6 +78,7 @@ class Game {
       count += 1;
       if (count === 200) {
         clearInterval(int);
+        this.musicPlayDied();
         console.log('Время вышло!');
         console.log(`Убито врагов: ${countOfEnemies}`);
         process.exit();
