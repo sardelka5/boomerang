@@ -9,9 +9,9 @@ const game = new Game({
 
 // Запуск игры.
 console.clear();
-const nameOfUser = process.argv[2];
-
 game.play();
+
+const nameOfUser = process.argv[2];
 
 async function main(name) {
   await User.create({ name: `${name}` });
